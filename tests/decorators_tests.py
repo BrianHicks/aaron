@@ -7,6 +7,9 @@ from aaron.decorators import composable
 def add_one(n):
     return n + 1
 
-def test_composable():
-    assert not isinstance(add_one, Composition)
-    assert isinstance(composable(add_one), Composition)
+class ComposableTests(TestCase):
+    'tests for composable decorator'
+
+    def test_isinstance(self):
+        self.assertFalse(isinstance(add_one, Composition))
+        self.assertTrue(isinstance(composable(add_one), Composition))

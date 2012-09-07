@@ -1,28 +1,48 @@
 'composition'
 import collections
 
-class Composition(list):
+class Composition(object):
     'a single composition'
     def __init__(self, *items):
         'initialize the collection'
-        items = [(item, False) for item in items]
+        self.funcs = [
+            self.wrap(item, splat=False) for item
+            in list(items)
+        ]
 
-        super(Composition, self).__init__(items)
+    def flattened(self):
+        'a flattened version of this composition'
+        flattened = []
+        for item, splat in self.funcs:
+            if isinstance(item, Composition):
+                flattened += item.flattened()
+
+            else:
+                flattened.append((item, splat))
+
+        return flattened
+
+    def wrap(self, func, splat=False):
+        'wrap a function'
+        if isinstance(func, tuple):
+            return func
+
+        return (func, splat)
 
     def __gt__(self, other):
         'simple piping'
-        self.append((other, False))
+        return Composition(self, self.wrap(other, splat=False))
 
     def __rshift__(self, other):
-        self.append((other, True))
+        return Composition(self, self.wrap(other, splat=True))
 
-    def __call__(self, initial):
-        'apply the composition'
-        result = initial
-        for func, splat in self:
-            if splat:
-                result = func(*result)
-            else:
-                result = func(result)
+    #def __call__(self, initial):
+        #'apply the composition'
+        #result = initial
+        #for func, splat in self:
+            #if splat:
+                #result = func(*result)
+            #else:
+                #result = func(result)
 
-        return result
+        #return result

@@ -21,40 +21,45 @@ def product(*ns):
     return result
 
 # test
-class GtTests(TestCase):
-    def setUp(self):
-        self.comp = Composition(add_one)
+class WrapTests(TestCase):
+    def test_wraps(self):
+        self.assertEqual(
+            Composition().wrap('x'),
+            ('x', False)
+        )
 
+    def test_wraps_splat(self):
+        self.assertEqual(
+            Composition().wrap('x', splat=True),
+            ('x', True)
+        )
+
+    def test_ignores_tuples(self):
+        self.assertEqual(
+            Composition().wrap(('1', '2')),
+            ('1', '2')
+        )
+
+class GtTests(TestCase):
     def test_gt(self):
-        self.comp > add_two
+        comp = Composition(add_one) > add_two
 
         self.assertEqual(
             [
                 (add_one, False),
                 (add_two, False)
             ],
-            list(self.comp)
+            comp.flattened()
         )
-
-    def test_result(self):
-        self.comp > add_two
-
-        self.assertEqual(3, self.comp(0))
-
 
 class RshiftTest(TestCase):
-    def setUp(self):
-        self.comp = Composition(ints_less_than)
-
     def test_rshift(self):
-        self.comp >> product
+        comp = Composition(ints_less_than) >> product
 
         self.assertEqual(
-            [(ints_less_than, False), (product, True)],
-            list(self.comp)
+            [
+                (ints_less_than, False),
+                (product, True)
+            ],
+            comp.flattened()
         )
-
-    def test_call(self):
-        self.comp >> product
-
-        self.assertEqual(6, self.comp(4))
