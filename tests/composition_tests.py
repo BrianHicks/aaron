@@ -63,3 +63,26 @@ class RshiftTest(TestCase):
             ],
             comp.flattened()
         )
+
+class CallTest(TestCase):
+    def test_nosplat(self):
+        comp = Composition(add_one) > add_two
+
+        self.assertEqual(comp(0), 3)
+
+    def test_splat(self):
+        comp = Composition(ints_less_than) >> product
+
+        self.assertEqual(comp(4), 6)
+
+    def test_short(self):
+        comp = Composition(add_one)
+
+        self.assertEqual(comp(0), 1)
+
+    def test_long(self):
+        comp = Composition(add_one)
+        for _ in range(99):
+            comp = comp > add_one
+
+        self.assertEqual(comp(0), 100)
