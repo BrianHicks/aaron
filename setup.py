@@ -5,6 +5,10 @@ setup(
     version = '1.0.1',
     packages = find_packages(),
 
+    # testing
+    test_suite = 'nose.collector',
+    tests_require = ['nose'],
+
     # metadata for PyPi and others
     author = 'Brian Hicks',
     author_email = 'brian@brianthicks.com',
