@@ -1,5 +1,8 @@
 # Aaron
 
+.. image:: https://secure.travis-ci.org/brianhicks/aaron.png?branch=master
+   :target: http://travis-ci.org/brianhicks/aaron
+
 Aaron adds some syntactic sugar to Python function composition.
 
 ## How?
