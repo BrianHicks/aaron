@@ -5,10 +5,6 @@ setup(
     version = '0.0.0',
     packages = find_packages(),
 
-    # testing
-    test_suite = 'runtests.runtests',
-    tests_require = ['nose'],
-
     # metadata for PyPi and others
     author = 'Brian Hicks',
     author_email = 'brian@brianthicks.com',
