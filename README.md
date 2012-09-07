@@ -44,6 +44,9 @@ two_n_plus_one = double > add_one
 product_of_lesser_numbers = ints_less_than >> product
 ```
 
+You've probably figured out by now that `>` is composition, and `>>` is will
+splat the results into the next function.
+
 ## Aaron? What?
 
 Yeah, the [composer](http://en.wikipedia.org/wiki/Aaron_Copland). Get it?
