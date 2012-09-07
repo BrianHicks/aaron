@@ -6,6 +6,6 @@ python:
   - "pypy"
 install:
  - pip install .
- - pip install nose
+ - python setup.py test
 # command to run tests
 script: nosetests
