@@ -4,8 +4,5 @@ python:
   - "2.7"
   - "3.2"
   - "pypy"
-install:
- - pip install .
- - python setup.py test
-# command to run tests
-script: nosetests
+install: pip install .
+script: python setup.py test
