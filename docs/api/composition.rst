@@ -1,0 +1,4 @@
+Composition
+===========
+
+.. automodule:: aaron.composition

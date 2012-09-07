@@ -22,21 +22,21 @@ def product(*ns):
 
 # test
 class WrapTests(TestCase):
-    def test_wraps(self):
+    def test__wraps(self):
         self.assertEqual(
-            Composition().wrap('x'),
+            Composition()._wrap('x'),
             ('x', False)
         )
 
-    def test_wraps_splat(self):
+    def test__wraps_splat(self):
         self.assertEqual(
-            Composition().wrap('x', splat=True),
+            Composition()._wrap('x', splat=True),
             ('x', True)
         )
 
     def test_ignores_tuples(self):
         self.assertEqual(
-            Composition().wrap(('1', '2')),
+            Composition()._wrap(('1', '2')),
             ('1', '2')
         )
 
@@ -49,7 +49,7 @@ class GtTests(TestCase):
                 (add_one, False),
                 (add_two, False)
             ],
-            comp.flattened()
+            comp._flattened()
         )
 
 class RshiftTest(TestCase):
@@ -61,7 +61,7 @@ class RshiftTest(TestCase):
                 (ints_less_than, False),
                 (product, True)
             ],
-            comp.flattened()
+            comp._flattened()
         )
 
 class CallTest(TestCase):
