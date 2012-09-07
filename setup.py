@@ -20,7 +20,5 @@ setup(
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'Topic :: Software Development',
-    ],
-
-    long_description = open('README.md').read(),
+    ]
 )
