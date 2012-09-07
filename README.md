@@ -36,7 +36,7 @@ def product_of_lesser_numbers(n):
   return product(*ints_less_than(n))
 ```
 
-Or, you could use Aaron, and do this:
+Or, you could use Aaron, decorate your functions with `composable`, and do this:
 
 ```python
 two_n_plus_one = double > add_one
